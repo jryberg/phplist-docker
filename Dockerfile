@@ -39,11 +39,6 @@ RUN unzip master.zip && mv /workdir/phplist-plugin-rssfeed-master/plugins/* /var
 # Fetch latest translations from Github
 RUN rm -rfv /var/www/phplist/public_html/lists/texts/ && git clone https://github.com/phpList/phplist-lan-texts.git /var/www/phplist/public_html/lists/texts/
 
-# Install cron
-COPY app /usr/src/cron
-COPY build.sh /opt/build.sh
-RUN /opt/build.sh
-
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Create folder for RSS feed and images
